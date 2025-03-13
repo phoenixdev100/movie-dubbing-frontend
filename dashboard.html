@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DubMaster Pro - Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-body">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="/" class="logo">
+                <i class="fas fa-microphone-alt"></i>
+                DubMaster Pro
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="#overview" onclick="showSection('overview')" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Overview</span>
+            </a>
+            <a href="#upload" onclick="showSection('upload')" class="nav-link">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span>Upload</span>
+            </a>
+            <a href="#videos" onclick="showSection('videos')" class="nav-link">
+                <i class="fas fa-film"></i>
+                <span>My Videos</span>
+            </a>
+            <a href="#profile" onclick="showSection('profile')" class="nav-link">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+            <button class="logout-btn" onclick="handleLogout()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+        <button class="menu-toggle" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="dashboard-container">
+        <!-- Overview Section -->
+        <section id="overview" class="dashboard-section active">
+            <div class="welcome-banner">
+                <div class="welcome-content">
+                    <h1>Welcome back, <span id="userName">User</span>!</h1>
+                    <p>Track your dubbing projects and manage your content all in one place.</p>
+                </div>
+                <button class="cta-btn primary" onclick="showSection('upload')">
+                    <i class="fas fa-plus"></i> New Project
+                </button>
+            </div>
+
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <i class="fas fa-film"></i>
+                    <h3>Videos Dubbed</h3>
+                    <p id="dubbedCount">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Processing</h3>
+                    <p id="processingCount">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-language"></i>
+                    <h3>Languages Used</h3>
+                    <p id="languageCount">0</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock-rotate-left"></i>
+                    <h3>Hours Saved</h3>
+                    <p id="hoursSaved">0</p>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <div class="section-header">
+                    <h2>Recent Activity</h2>
+                    <button class="view-all-btn" onclick="showSection('videos')">View All</button>
+                </div>
+                <div class="activity-timeline" id="recentActivity">
+                    <!-- Activity items will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Upload Section -->
+        <section id="upload" class="dashboard-section">
+            <div class="section-header">
+                <h2>Upload New Video</h2>
+                <p>Start your dubbing project by uploading a video file</p>
+            </div>
+
+            <form id="uploadForm" onsubmit="submitVideoUpload(event)">
+                <div class="upload-container">
+                    <div class="upload-box" id="dropZone">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Drag & Drop Video</h3>
+                        <p>or</p>
+                        <input type="file" id="videoFile" accept="video/*" onchange="handleVideoUpload(event)" hidden>
+                        <button type="button" class="upload-btn" onclick="document.getElementById('videoFile').click()">
+                            Choose File
+                        </button>
+                        <p class="upload-info">Supported formats: MP4, AVI, MOV (max 2GB)</p>
+                    </div>
+                    <div id="videoPreview" class="video-preview"></div>
+                </div>
+                
+                <div id="uploadOptions" class="upload-options" style="display: none;">
+                    <div class="form-group">
+                        <label for="videoTitle">Video Title</label>
+                        <input type="text" id="videoTitle" required placeholder="Enter a title for your video">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="targetLanguage">Target Language</label>
+                            <select id="targetLanguage" required>
+                                <option value="">Select Language</option>
+                                <option value="en">English</option>
+                                <option value="es">Spanish</option>
+                                <option value="fr">French</option>
+                                <option value="de">German</option>
+                                <option value="it">Italian</option>
+                                <option value="ja">Japanese</option>
+                                <option value="ko">Korean</option>
+                                <option value="zh">Chinese</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="voiceGender">Voice Type</label>
+                            <select id="voiceGender" required>
+                                <option value="">Select Voice</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-magic"></i> Start Dubbing
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Videos Section -->
+        <section id="videos" class="dashboard-section">
+            <div class="section-header">
+                <h2>My Videos</h2>
+                <div class="video-filters">
+                    <button class="filter-btn active" onclick="filterVideos('all')">All</button>
+                    <button class="filter-btn" onclick="filterVideos('dubbed')">Dubbed</button>
+                    <button class="filter-btn" onclick="filterVideos('original')">Original</button>
+                </div>
+            </div>
+            <div class="video-grid">
+                <!-- Sample Video 1 -->
+                <div class="video-card" data-type="dubbed">
+                    <div class="video-thumbnail">
+                        <img src="https://picsum.photos/300/200" alt="Video thumbnail">
+                        <span class="video-duration">3:45</span>
+                        <div class="video-overlay">
+                            <button class="play-btn"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Nature Documentary (English Dub)</h3>
+                        <p class="video-meta">
+                            <span><i class="fas fa-clock"></i> 2 days ago</span>
+                            <span><i class="fas fa-language"></i> English</span>
+                        </p>
+                        <div class="video-actions">
+                            <button class="action-btn"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="action-btn"><i class="fas fa-download"></i> Download</button>
+                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Video 2 -->
+                <div class="video-card" data-type="original">
+                    <div class="video-thumbnail">
+                        <img src="https://picsum.photos/300/201" alt="Video thumbnail">
+                        <span class="video-duration">5:20</span>
+                        <div class="video-overlay">
+                            <button class="play-btn"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Travel Vlog (Original)</h3>
+                        <p class="video-meta">
+                            <span><i class="fas fa-clock"></i> 1 week ago</span>
+                            <span><i class="fas fa-language"></i> Japanese</span>
+                        </p>
+                        <div class="video-actions">
+                            <button class="action-btn"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="action-btn"><i class="fas fa-download"></i> Download</button>
+                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Video 3 -->
+                <div class="video-card" data-type="dubbed">
+                    <div class="video-thumbnail">
+                        <img src="https://picsum.photos/300/202" alt="Video thumbnail">
+                        <span class="video-duration">2:15</span>
+                        <div class="video-overlay">
+                            <button class="play-btn"><i class="fas fa-play"></i></button>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3>Cooking Tutorial (Spanish Dub)</h3>
+                        <p class="video-meta">
+                            <span><i class="fas fa-clock"></i> 3 weeks ago</span>
+                            <span><i class="fas fa-language"></i> Spanish</span>
+                        </p>
+                        <div class="video-actions">
+                            <button class="action-btn"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="action-btn"><i class="fas fa-download"></i> Download</button>
+                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" class="dashboard-section">
+            <div class="section-header">
+                <h2>Profile Settings</h2>
+                <p>Manage your account information and preferences</p>
+            </div>
+
+            <div class="profile-container">
+                <div class="profile-sidebar">
+                    <div class="profile-picture-container">
+                        <img src="https://via.placeholder.com/150" alt="Profile Picture" id="profilePic">
+                        <div class="profile-picture-overlay">
+                            <button class="change-pic-btn">
+                                <i class="fas fa-camera"></i> Change Picture
+                            </button>
+                        </div>
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Member since</span>
+                            <strong id="memberSince">March 2025</strong>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-film"></i>
+                            <span>Total Videos</span>
+                            <strong id="totalVideos">0</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-content">
+                    <form id="profileForm" onsubmit="updateProfile(event)">
+                        <div class="form-group">
+                            <label for="profileName">Full Name</label>
+                            <input type="text" id="profileName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="profileEmail">Email</label>
+                            <input type="email" id="profileEmail" required readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="profileBio">Bio</label>
+                            <textarea id="profileBio" rows="4" placeholder="Tell us about yourself..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Notifications</label>
+                            <div class="notification-preferences">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> Video processing updates
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> New features and updates
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="danger-zone">
+                        <h3>Danger Zone</h3>
+                        <div class="danger-actions">
+                            <button class="danger-btn" onclick="resetPassword()">
+                                <i class="fas fa-key"></i> Reset Password
+                            </button>
+                            <button class="danger-btn" onclick="deleteAccount()">
+                                <i class="fas fa-trash-alt"></i> Delete Account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
