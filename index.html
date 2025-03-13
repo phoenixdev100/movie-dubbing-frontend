@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DubMaster Pro - Automated Movie Dubbing</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="/" class="logo">
+                <i class="fas fa-microphone-alt"></i>
+                DubMaster Pro
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#testimonials">Testimonials</a>
+            <button class="auth-btn" onclick="openModal('loginModal')">Login</button>
+            <button class="auth-btn" onclick="openModal('signupModal')">Sign Up</button>
+        </div>
+        <button class="menu-toggle" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Transform Your Content with <br><span class="gradient-text">AI-Powered Dubbing</span></h1>
+                <!-- <p class="hero-subtitle">Break language barriers and reach global audiences with our state-of-the-art automated dubbing technology.</p> -->
+            </div>
+            
+            <div class="hero-features">
+                <div class="hero-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>50+ Languages</h3>
+                        <p>Support for major global languages</p>
+                    </div>
+                </div>
+                <div class="hero-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Real-time Processing</h3>
+                        <p>Fast and efficient dubbing</p>
+                    </div>
+                </div>
+                <!-- <div class="hero-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Natural Voice</h3>
+                        <p>Human-like voice synthesis</p>
+                    </div>
+                </div> -->
+            </div>
+
+            <div class="hero-cta">
+                <button class="cta-btn primary" onclick="openModal('signupModal')">
+                    Start Dubbing Now
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="cta-btn secondary" onclick="location.href='#how-it-works'">
+                    See How It Works
+                </button>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-image">
+                <img src="https://via.placeholder.com/600x400" alt="AI Dubbing Illustration">
+                <div class="stats-card">
+                    <div class="stat">
+                        <i class="fas fa-check-circle"></i>
+                        <span>99% Accuracy</span>
+                    </div>
+                </div>
+                <div class="stats-card">
+                    <div class="stat">
+                        <i class="fas fa-clock"></i>
+                        <span>2x Faster</span>
+                    </div>
+                </div>
+            </div>
+            <div class="blob-shape"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2>Why Choose DubMaster Pro?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-robot"></i>
+                <h3>AI-Powered</h3>
+                <p>Advanced AI technology for natural-sounding voice synthesis and lip-sync.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-language"></i>
+                <h3>Multiple Languages</h3>
+                <p>Support for 50+ languages with native-quality voice output.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Fast Processing</h3>
+                <p>Get your dubbed videos in minutes, not hours or days.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-dollar-sign"></i>
+                <h3>Cost-Effective</h3>
+                <p>Save up to 80% compared to traditional dubbing services.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Upload Your Video</h3>
+                <p>Upload your video in any common format (MP4, AVI, MOV).</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Choose Language</h3>
+                <p>Select your target language and preferred voice type.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>AI Processing</h3>
+                <p>Our AI analyzes and processes your video for perfect dubbing.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Download</h3>
+                <p>Download your professionally dubbed video.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <h2>Simple, Transparent Pricing</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Basic</h3>
+                <div class="price">$9.99<span>/month</span></div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Up to 1 hour of video</li>
+                    <li><i class="fas fa-check"></i> 10 languages</li>
+                    <li><i class="fas fa-check"></i> Standard processing</li>
+                    <li><i class="fas fa-check"></i> Email support</li>
+                </ul>
+                <button class="pricing-btn" onclick="openModal('signupModal')">Get Started</button>
+            </div>
+            <div class="pricing-card popular">
+                <div class="popular-tag">Most Popular</div>
+                <h3>Pro</h3>
+                <div class="price">$24.99<span>/month</span></div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Up to 5 hours of video</li>
+                    <li><i class="fas fa-check"></i> 30 languages</li>
+                    <li><i class="fas fa-check"></i> Priority processing</li>
+                    <li><i class="fas fa-check"></i> 24/7 support</li>
+                </ul>
+                <button class="pricing-btn" onclick="openModal('signupModal')">Get Started</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price">Custom</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Unlimited video hours</li>
+                    <li><i class="fas fa-check"></i> All languages</li>
+                    <li><i class="fas fa-check"></i> Instant processing</li>
+                    <li><i class="fas fa-check"></i> Dedicated support</li>
+                </ul>
+                <button class="pricing-btn" onclick="location.href='#contact'">Contact Us</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"DubMaster Pro has revolutionized our content localization process. We can now reach global audiences in record time."</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://via.placeholder.com/60" alt="John Doe">
+                    <div>
+                        <h4>John Doe</h4>
+                        <p>Content Creator</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"The quality of the AI dubbing is incredible. Our viewers can't tell the difference from professional voice actors."</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://via.placeholder.com/60" alt="Jane Smith">
+                    <div>
+                        <h4>Jane Smith</h4>
+                        <p>Film Producer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>DubMaster Pro</h3>
+                <p>Breaking language barriers with AI-powered dubbing technology.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> support@phoenixdev100.tech</li>
+                    <li><i class="fas fa-phone"></i> +91 98xxxxxxxx</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Delhi, India</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on new features and releases.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 phoenixdev100. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Welcome Back!</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <p class="modal-footer">
+                Don't have an account? 
+                <a href="#" onclick="switchModal('loginModal', 'signupModal')">Sign up</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Create Account</h2>
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+            <p class="modal-footer">
+                Already have an account? 
+                <a href="#" onclick="switchModal('signupModal', 'loginModal')">Login</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="/script.js"></script>
+</body>
+</html>
