@@ -1,0 +1,19 @@
+# Web Framework and Server
+Flask==3.0.0
+gunicorn==21.2.0
+
+# Audio/Video Processing
+moviepy==1.0.3
+pydub==0.25.1
+ffmpeg-python==0.2.0
+
+# File Handling and Processing
+python-dotenv==1.0.0
+Werkzeug==3.0.1
+
+# API and Request Handling
+requests==2.31.0
+python-multipart==0.0.6
+
+# Database
+SQLAlchemy==2.0.23
