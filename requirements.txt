@@ -17,3 +17,5 @@ python-multipart==0.0.6
 
 # Database
 SQLAlchemy==2.0.23
+
+PyJWT==2.8.0
